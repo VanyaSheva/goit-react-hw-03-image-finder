@@ -46,7 +46,7 @@ export default class App extends Component {
         <Searchbar
           onSubmit={this.onGetImages}
           onInputQueryChange={this.onInputQueryChange}
-          value={query}
+          query={query}
         />
         {images.length > 0 && (
           <>

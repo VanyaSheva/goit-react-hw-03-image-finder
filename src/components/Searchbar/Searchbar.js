@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Searchbar.module.css";
 import FetchImagesWithQuery from "../../services/FetchImages.js";
 import Loader from "../Loader/Loader";
+import PropTypes from "prop-types";
 
 export default class Searchbar extends Component {
   state = {
@@ -10,7 +11,7 @@ export default class Searchbar extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
     this.setState({ isLoading: true });
-    await FetchImagesWithQuery(this.props.value).then((images) => {
+    await FetchImagesWithQuery(this.props.query).then((images) => {
       this.props.onSubmit(images);
     });
     await this.setState({ isLoading: false });
@@ -32,7 +33,7 @@ export default class Searchbar extends Component {
               autoFocus
               placeholder="Search images and photos"
               onChange={this.props.onInputQueryChange}
-              value={this.props.value}
+              value={this.props.query}
             />
           </form>
         </header>
@@ -41,3 +42,9 @@ export default class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onInputQueryChange: PropTypes.func.isRequired,
+  query: PropTypes.string,
+};

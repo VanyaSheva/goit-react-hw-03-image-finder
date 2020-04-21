@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Button.module.css";
 import FetchImagesWithQuery from "../../services/FetchImages.js";
 import Loader from "../Loader/Loader";
+import PropTypes from "prop-types";
 
 class Button extends Component {
   state = {
@@ -39,5 +40,10 @@ class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
+};
 
 export default Button;
